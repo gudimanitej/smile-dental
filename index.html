@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmileDentalToursIndia – AI Dental Tourism in India</title>
+  <meta name="description" content="Plan your dental treatment in India with AI. Upload your reports and get a customized treatment and travel plan in Hyderabad and other top Indian cities." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1E88E5;
+      --blue-dark: #1565C0;
+      --blue-light: #E3F2FD;
+      --green: #00C853;
+      --green-dark: #00963E;
+      --white: #ffffff;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-400: #9CA3AF;
+      --gray-600: #4B5563;
+      --gray-900: #111827;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 40px rgba(30,136,229,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--gray-900);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--gray-900);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); text-decoration: none; }
+
+    /* ── Section wrapper ── */
+    .section { padding: 5rem 1.5rem; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--gray-900);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 88vh;
+      display: flex; align-items: center;
+      padding: 6rem 1.5rem 4rem;
+      background: linear-gradient(160deg, var(--white) 60%, var(--blue-light) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; right: -120px; top: -80px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,136,229,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 960px; margin: 0 auto; width: 100%; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: 0.78rem; font-weight: 500;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+      border: 1px solid rgba(30,136,229,0.2);
+    }
+    .hero-badge::before { content: '✦'; font-size: 0.65rem; }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--gray-900);
+      max-width: 720px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--blue);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--gray-600);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      border: none; cursor: pointer;
+      transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(30,136,229,0.3);
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(30,136,229,0.4);
+      text-decoration: none;
+      color: white;
+    }
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .hero-note::before { content: '🔒'; font-size: 0.8rem; }
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-200);
+    }
+    .hero-stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      letter-spacing: -0.04em;
+    }
+    .hero-stat-num span { color: var(--blue); }
+    .hero-stat-label { font-size: 0.8rem; color: var(--gray-400); margin-top: 1px; }
+
+    /* ── How it works ── */
+    .how { background: var(--gray-50); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .step-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      position: relative;
+      transition: box-shadow 0.2s;
+    }
+    .step-card:hover { box-shadow: var(--shadow-lg); }
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--gray-200);
+      line-height: 1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.06em;
+    }
+    .step-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--gray-900);
+      margin-bottom: 0.4rem;
+    }
+    .step-desc { font-size: 0.88rem; color: var(--gray-600); line-height: 1.55; }
+    .step-icon {
+      width: 36px; height: 36px;
+      background: var(--blue-light);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Why India ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .why-card:hover { border-color: var(--blue); }
+    .why-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: var(--blue-light);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-text strong { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .why-text span { font-size: 0.85rem; color: var(--gray-600); line-height: 1.5; }
+
+    /* ── Form Section ── */
+    .form-section { background: var(--gray-50); }
+    .form-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 5vw, 3rem);
+      box-shadow: var(--shadow-lg);
+      max-width: 680px;
+      margin: 2.5rem auto 0;
+    }
+    .form-card-header { margin-bottom: 2rem; }
+    .form-card-header h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--gray-900);
+      margin-bottom: 0.4rem;
+    }
+    .form-card-header p { font-size: 0.88rem; color: var(--gray-600); }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: 0.82rem; font-weight: 500; color: var(--gray-600); }
+    label span { color: #E53935; margin-left: 2px; }
+    input, select, textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--gray-900);
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+      width: 100%;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(30,136,229,0.1);
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    .file-upload-area {
+      border: 1.5px dashed var(--gray-200);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      background: var(--gray-50);
+      position: relative;
+    }
+    .file-upload-area:hover, .file-upload-area.drag-over {
+      border-color: var(--blue);
+      background: var(--blue-light);
+    }
+    .file-upload-area input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .file-upload-icon { font-size: 1.5rem; margin-bottom: 0.35rem; }
+    .file-upload-text { font-size: 0.82rem; color: var(--gray-600); }
+    .file-upload-text strong { color: var(--blue); }
+    #file-name-display { font-size: 0.78rem; color: var(--green-dark); margin-top: 0.4rem; font-weight: 500; }
+    .form-submit {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+    }
+    .btn-submit {
+      width: 100%;
+      background: var(--blue);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 10px;
+      border: none; cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(30,136,229,0.3);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(30,136,229,0.4);
+    }
+    .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+    .btn-submit .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-text { opacity: 0.7; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-disclaimer {
+      grid-column: 1 / -1;
+      font-size: 0.75rem; color: var(--gray-400);
+      text-align: center; margin-top: 0.5rem;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+    }
+
+    /* Success / Error states */
+    .form-message {
+      display: none;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      grid-column: 1 / -1;
+    }
+    .form-message.success {
+      background: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7;
+    }
+    .form-message.error {
+      background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2;
+    }
+    .form-message.show { display: block; }
+
+    /* ── Trust bar ── */
+    .trust {
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--gray-200);
+      text-align: center;
+    }
+    .trust-inner { max-width: 600px; margin: 0 auto; }
+    .trust-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 1.25rem 0; }
+    .trust-badge {
+      background: var(--gray-100);
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      display: flex; align-items: center; gap: 5px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--gray-900);
+      color: var(--gray-400);
+      padding: 2rem 1.5rem;
+      font-size: 0.82rem;
+    }
+    .footer-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+    }
+    .footer-logo span { color: var(--blue); }
+    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray-400); transition: color 0.15s; }
+    .footer-links a:hover { color: white; text-decoration: none; }
+
+    /* ── Setup Banner ── */
+    .setup-banner {
+      background: #FFF8E1;
+      border: 1px solid #FFE082;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 0.84rem;
+      color: #5D4037;
+      margin-bottom: 1.5rem;
+      line-height: 1.55;
+    }
+    .setup-banner strong { color: #E65100; }
+    .setup-banner a { color: var(--blue); font-weight: 500; }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .section { padding: 3.5rem 1.25rem; }
+      .hero { padding: 5rem 1.25rem 3rem; min-height: 100svh; }
+      .hero h1 { font-size: 2.2rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 1.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Smile<span>Dental</span>ToursIndia</div>
+    <a href="#assessment" class="nav-cta">Upload Reports</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">AI-Powered Dental Tourism</div>
+    <h1>
+      World-Class Dentistry,<br>
+      <em>Crafted for You</em> in India.
+    </h1>
+    <p class="hero-sub">
+      Just upload your dental reports — we handle everything else. Get a custom treatment + travel plan in Hyderabad within 24 hours.
+    </p>
+    <div class="hero-actions">
+      <a href="#assessment" class="btn-primary">Upload Your Reports →</a>
+      <span class="hero-note">No payment. No commitment.</span>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">70<span>%</span></div>
+        <div class="hero-stat-label">avg. cost savings vs. West</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">24<span>h</span></div>
+        <div class="hero-stat-label">response time</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">15<span>+</span></div>
+        <div class="hero-stat-label">partner specialists</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="section how">
+  <div class="section-inner">
+    <div class="section-label">Process</div>
+    <div class="section-title">Three steps to your smile</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon">📋</div>
+        <div class="step-num">01</div>
+        <div class="step-title">Upload your X-rays / reports</div>
+        <div class="step-desc">Share your dental X-rays, scans, or any existing reports. Our AI analyses them instantly and prepares a brief.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">🏥</div>
+        <div class="step-num">02</div>
+        <div class="step-title">We match you with top dentists</div>
+        <div class="step-desc">Based on your treatment needs, we curate a shortlist of certified specialists in Hyderabad and other top Indian cities.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">✈️</div>
+        <div class="step-num">03</div>
+        <div class="step-title">Treatment plan + travel support</div>
+        <div class="step-desc">Receive a full cost estimate, appointment schedule, accommodation recommendations, and visa guidance — all in one plan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY INDIA ── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">Why India</div>
+    <div class="section-title">Exceptional care, extraordinary value</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <div class="why-text">
+          <strong>Save up to 70% vs. US/Europe</strong>
+          <span>Dental implants, veneers, and full-mouth rehabs at a fraction of Western prices — with no compromise on quality.</span>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎓</div>
+        <div class="why-text">
+          <strong>English-speaking, globally trained dentists</strong>
+          <span>Our partner specialists hold international certifications and communicate fluently — no language barriers, ever.</span>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌇</div>
+        <div class="why-text">
+          <strong>Hyderabad: modern hospitals + rich culture</strong>
+          <span>A top-tier medical city with JCI-accredited hospitals, direct international flights, and a vibrant local experience.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEAD FORM ── -->
+<section class="section form-section" id="assessment">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 0.5rem;">
+      <div class="section-label">Free Assessment</div>
+      <div class="section-title">Upload your report, we do the rest</div>
+      <p style="color:var(--gray-600); font-size:0.92rem; margin-top:0.75rem; max-width:480px; margin-left:auto; margin-right:auto;">
+        Just your name, contact, and dental report. We'll review it and send a personalised treatment + travel plan within 24 hours.
+      </p>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-header">
+        <h3>Upload Your Reports</h3>
+        <p>3 quick fields, then upload your X-ray or report — we take it from there.</p>
+      </div>
+
+      <form id="assessment-form" novalidate>
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="full_name">Full Name <span>*</span></label>
+            <input type="text" id="full_name" name="full_name" placeholder="Jane Smith" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span>*</span></label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+
+          <div class="form-group full">
+            <label for="whatsapp">WhatsApp Number (with country code) <span>*</span></label>
+            <input type="text" id="whatsapp" name="whatsapp" placeholder="+1 555 000 0000" required />
+          </div>
+
+          <div class="form-group full">
+            <label for="file_upload">Dental X-ray or Report <span>*</span></label>
+            <div class="file-upload-area" id="drop-zone">
+              <input type="file" id="file_upload" name="file_upload" accept="image/*,.pdf" required />
+              <div class="file-upload-icon">📤</div>
+              <div class="file-upload-text">
+                <strong>Click to upload</strong> or drag and drop<br>
+                JPG, PNG, PDF — max 10 MB
+              </div>
+              <div id="file-name-display"></div>
+            </div>
+          </div>
+
+          <div class="form-message" id="form-msg"></div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <div class="spinner"></div>
+              <span class="btn-text">Send My Report →</span>
+            </button>
+          </div>
+
+          <div class="form-disclaimer">
+            🔒 Your data is encrypted and never sold or shared with third parties.
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST ── -->
+<section class="trust">
+  <div class="trust-inner">
+    <p style="font-size:0.88rem; color:var(--gray-600);">
+      We partner with certified dental specialists across India's leading JCI-accredited hospitals.
+    </p>
+    <div class="trust-badges">
+      <span class="trust-badge">✓ Certified Specialists</span>
+      <span class="trust-badge">✓ JCI-Accredited Hospitals</span>
+      <span class="trust-badge">✓ 100% Free Assessment</span>
+      <span class="trust-badge">✓ No Hidden Fees</span>
+    </div>
+    <p style="font-size:0.78rem; color:var(--gray-400);">
+      Starting from Hyderabad · Expanding across India
+    </p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Smile<span>Dental</span>ToursIndia</div>
+    <div class="footer-links">
+      <a href="https://wa.me/+919000000000" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="/cdn-cgi/l/email-protection#a5cdc0c9c9cae5d6c8ccc9c0c1c0cbd1c4c9cccbc1ccc48bc6cac8">Email</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+    </div>
+    <div>© 2025 SmileDentalToursIndia. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ── -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── File upload display ──
+  const fileInput = document.getElementById('file_upload');
+  const fileDisplay = document.getElementById('file-name-display');
+  const dropZone = document.getElementById('drop-zone');
+
+  fileInput.addEventListener('change', function() {
+    if (this.files.length) {
+      fileDisplay.textContent = '✓ ' + this.files[0].name;
+    }
+  });
+  ['dragover','dragenter'].forEach(e => dropZone.addEventListener(e, ev => {
+    ev.preventDefault(); dropZone.classList.add('drag-over');
+  }));
+  ['dragleave','drop'].forEach(e => dropZone.addEventListener(e, ev => {
+    ev.preventDefault(); dropZone.classList.remove('drag-over');
+  }));
+
+  // ── Form submission ──
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPMPjQn7-r9WoknEu2ChJO9YV6wz9YyHsUhLj28CxDGzFhdxOZlJv5P8Lv9WngU9yO/exec';
+  // ↑ Replace with your deployed Google Apps Script Web App URL
+
+  document.getElementById('assessment-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submit-btn');
+    const msgEl = document.getElementById('form-msg');
+
+    // Basic validation
+    const name = document.getElementById('full_name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const file = fileInput.files[0];
+
+    if (!name || !email || !whatsapp) {
+      showMessage('error', '⚠️ Please fill in your name, email, and WhatsApp number.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showMessage('error', '⚠️ Please enter a valid email address.');
+      return;
+    }
+    if (!file) {
+      showMessage('error', '⚠️ Please upload your dental X-ray or report.');
+      return;
+    }
+    if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+      showMessage('error', '⚙️ Google Sheets not connected yet. Deploy the Apps Script and update the URL. (See Code.gs setup instructions.)');
+      return;
+    }
+
+    // Loading state
+    btn.disabled = true;
+    btn.classList.add('loading');
+    btn.querySelector('.btn-text').textContent = 'Sending…';
+    msgEl.classList.remove('show', 'success', 'error');
+
+    try {
+      // Read file
+      let fileData = null;
+      let fileName = '';
+      if (file) {
+        if (file.size > 10 * 1024 * 1024) {
+          showMessage('error', '⚠️ File is too large. Maximum size is 10 MB.');
+          resetBtn(btn); return;
+        }
+        fileData = await toBase64(file);
+        fileName = file.name;
+      }
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        full_name: name,
+        email: email,
+        whatsapp: whatsapp,
+        country: '',
+        treatment: '',
+        travel_month: '',
+        message: '',
+        file_data: fileData,
+        file_name: fileName
+      };
+
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload)
+      });
+
+      // no-cors returns an opaque response — if no exception thrown, treat as success
+      showMessage('success', '🎉 Report received! We\'ll send your personalised AI dental plan to your email within 24 hours.');
+      document.getElementById('assessment-form').reset();
+      fileDisplay.textContent = '';
+    } catch (err) {
+      console.error(err);
+      showMessage('error', '❌ Something went wrong. Please try again or contact us on WhatsApp.');
+    }
+
+    resetBtn(btn);
+  });
+
+  function showMessage(type, text) {
+    const el = document.getElementById('form-msg');
+    el.textContent = text;
+    el.className = 'form-message show ' + type;
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function resetBtn(btn) {
+    btn.disabled = false;
+    btn.classList.remove('loading');
+    btn.querySelector('.btn-text').textContent = 'Send My Report →';
+  }
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.
