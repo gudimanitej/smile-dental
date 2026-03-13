@@ -713,8 +713,8 @@
     msgEl.classList.remove('show', 'success', 'error');
 
     try {
-      // Read file
-      let fileData = null;
+      // Read file as base64
+      let fileData = '';
       let fileName = '';
       if (file) {
         if (file.size > 10 * 1024 * 1024) {
@@ -722,35 +722,36 @@
           resetBtn(btn); return;
         }
         fileData = await toBase64(file);
-        fileName = file.name;
+        fileName  = file.name;
       }
 
-      const payload = {
-        timestamp: new Date().toISOString(),
-        full_name: name,
-        email: email,
-        whatsapp: whatsapp,
-        country: '',
-        treatment: '',
-        travel_month: '',
-        message: '',
-        file_data: fileData,
-        file_name: fileName
-      };
+      // Use URLSearchParams — most reliable with Google Apps Script + no-cors
+      const params = new URLSearchParams();
+      params.append('timestamp',    new Date().toISOString());
+      params.append('full_name',    name);
+      params.append('email',        email);
+      params.append('whatsapp',     whatsapp);
+      params.append('country',      '');
+      params.append('treatment',    '');
+      params.append('travel_month', '');
+      params.append('message',      '');
+      params.append('file_name',    fileName);
+      params.append('file_data',    fileData);
 
       await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: JSON.stringify(payload)
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body:    params.toString()
       });
 
-      // no-cors returns an opaque response — if no exception thrown, treat as success
-      showMessage('success', '🎉 Report received! We\'ll send your personalised AI dental plan to your email within 24 hours.');
+      showMessage('success', '🎉 Report received! Check your email within 24 hours for your personalised dental plan.');
       document.getElementById('assessment-form').reset();
       fileDisplay.textContent = '';
+
     } catch (err) {
       console.error(err);
-      showMessage('error', '❌ Something went wrong. Please try again or contact us on WhatsApp.');
+      showMessage('error', '❌ Something went wrong. Please try again or WhatsApp us directly.');
     }
 
     resetBtn(btn);
